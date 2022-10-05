@@ -5,6 +5,7 @@ from pyppeteer import launch
 import json
 
 async def get_article_titles(keyword):
+   search_engine_url="https://duckduckgo.com/"
    # launch browser in headless mode
    browser = await launch({"headless": False, "args": ["--start-maximized"]})
    # create a new page
@@ -12,7 +13,7 @@ async def get_article_titles(keyword):
    # set page viewport to the largest size
    await page.setViewport({"width": 1600, "height": 900})
    # navigate to the page
-   await page.goto("https://duckduckgo.com/")
+   await page.goto(search_engine_url)
    # locate the search box
    entry_box = await page.querySelector("div")
    #.TextInput_userInput__807JK
@@ -32,7 +33,7 @@ async def get_article_titles(keyword):
    # list of dictionaries 
    data = [
       {
-         "search engine":"https://duckduckgo.com/",
+         "search engine":search_engine_url,
          "search query":keyword
          }
    ]
